@@ -11,6 +11,7 @@ calApp.controller("StepsController", [
       $scope.steps2 = [];
       $scope.answer = undefined;
       $scope.N = n;
+      $scope.X = x;
 
       let a = parseInt(n),
         b = parseInt(a / x),
