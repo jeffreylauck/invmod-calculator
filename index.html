@@ -49,10 +49,22 @@
       <div ng-controller="StepsController">
         <div class="input py-3">
           <form name="inputForm">
-            <input type="number" ng-model="x" ng-pattern="/^\d+$/" required />
+            <input
+              type="number"
+              class="form-control"
+              ng-model="x"
+              ng-pattern="/^\d+$/"
+              required
+            />
             <sup>-1</sup>
             <p class="mod">mod</p>
-            <input type="number" ng-model="n" ng-pattern="/^\d+$/" required />
+            <input
+              type="number"
+              class="form-control"
+              ng-model="n"
+              ng-pattern="/^\d+$/"
+              required
+            />
             <button
               class="submit-button btn btn-primary"
               ng-click="calculate(x,n)"
@@ -97,7 +109,7 @@
           </div>
         </div>
         <h3 ng-if="answer">Final Answer</h3>
-        <div ng-if="answer">
+        <div ng-if="answer" class="mb-5">
           <span ng-if="answer < 0">{{answer}} + {{N}} = </span
           ><span>{{answer > 0 ? answer : answer + N}}</span>
         </div>
