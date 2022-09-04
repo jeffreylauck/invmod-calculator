@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inverse Mod Calculator</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <style>
       .input > form {
         display: flex;
@@ -43,55 +44,66 @@
   </head>
 
   <body ng-app="calApp">
-    <h1>Inverse Mod Calculator</h1>
-    <div ng-controller="StepsController">
-      <div class="input">
-        <form name="inputForm">
-          <input type="number" ng-model="x" ng-pattern="/^\d+$/" required />
-          <sup>-1</sup>
-          <p class="mod">mod</p>
-          <input type="number" ng-model="n" ng-pattern="/^\d+$/" required />
-          <button class="submit-button" ng-click="calculate(x,n)">
-            Calculate
-          </button>
-        </form>
-      </div>
-      <h3 ng-if="steps.length > 0">Steps</h3>
-      <div ng-if="steps.length > 0" class="steps">
-        <div ng-repeat="step in steps">
-          <span class="a">{{step.a}}</span> =
-          <span class="b">{{step.b}}</span> x
-          <span class="c">{{step.c}}</span> + <span class="d">{{step.d}}</span>
-          <span>------&nbsp;</span><span class="eqnum">({{$index+1}})</span>
+    <div class="container">
+      <h1>Inverse Mod Calculator</h1>
+      <div ng-controller="StepsController">
+        <div class="input py-3">
+          <form name="inputForm">
+            <input type="number" ng-model="x" ng-pattern="/^\d+$/" required />
+            <sup>-1</sup>
+            <p class="mod">mod</p>
+            <input type="number" ng-model="n" ng-pattern="/^\d+$/" required />
+            <button
+              class="submit-button btn btn-primary"
+              ng-click="calculate(x,n)"
+            >
+              Calculate
+            </button>
+          </form>
         </div>
-        <br />
-        <h2 ng-if="steps[steps.length-1].d !== 1">
-          {{X}} and {{N}} are not co-prime, there is no multiplicative modulo
-          inverse.
-        </h2>
-        <div ng-repeat="step in steps" ng-if="steps[steps.length-1].d === 1">
-          <span>From ({{$index+1}})</span><br />
-          <span class="a">{{step.d}}</span> =
-          <span class="b">{{step.a}}</span> -
-          <span class="c">{{step.b}}</span> x <span class="d">{{step.c}}</span>
+        <h3 ng-if="steps.length > 0">Steps</h3>
+        <div ng-if="steps.length > 0" class="steps">
+          <div ng-repeat="step in steps">
+            <span class="a">{{step.a}}</span> =
+            <span class="b">{{step.b}}</span> x
+            <span class="c">{{step.c}}</span> +
+            <span class="d">{{step.d}}</span> <span>------&nbsp;</span
+            ><span class="eqnum">({{$index+1}})</span>
+          </div>
+          <br />
+          <h2 ng-if="steps[steps.length-1].d !== 1">
+            {{X}} and {{N}} are not co-prime, there is no multiplicative modulo
+            inverse.
+          </h2>
+          <div ng-repeat="step in steps" ng-if="steps[steps.length-1].d === 1">
+            <span>From ({{$index+1}})</span><br />
+            <span class="a">{{step.d}}</span> =
+            <span class="b">{{step.a}}</span> -
+            <span class="c">{{step.b}}</span> x
+            <span class="d">{{step.c}}</span>
+          </div>
         </div>
-      </div>
-      <h3 ng-if="steps2.length > 0">Reversed Steps to XGCD Form</h3>
-      <div ng-if="steps2.length > 0" class="steps">
-        <div ng-repeat="step in steps2">
-          <span class="a">1</span> =
-          <span class="b">{{step.a > 0 ? step.a : "(" + step.a + ")"}}</span> x
-          <span class="b">{{step.b > 0 ? step.b : "(" + step.b + ")"}}</span> +
-          <span class="c">{{step.c > 0 ? step.c : "(" + step.c + ")"}}</span> x
-          <span class="d">{{step.d > 0 ? step.d : "(" + step.d + ")"}}</span>
+        <h3 ng-if="steps2.length > 0">Reversed Steps to XGCD Form</h3>
+        <div ng-if="steps2.length > 0" class="steps">
+          <div ng-repeat="step in steps2">
+            <span class="a">1</span> =
+            <span class="b">{{step.a > 0 ? step.a : "(" + step.a + ")"}}</span>
+            x
+            <span class="b">{{step.b > 0 ? step.b : "(" + step.b + ")"}}</span>
+            +
+            <span class="c">{{step.c > 0 ? step.c : "(" + step.c + ")"}}</span>
+            x
+            <span class="d">{{step.d > 0 ? step.d : "(" + step.d + ")"}}</span>
+          </div>
         </div>
-      </div>
-      <h3 ng-if="answer">Final Answer</h3>
-      <div ng-if="answer">
-        <span ng-if="answer < 0">{{answer}} + {{N}} = </span
-        ><span>{{answer > 0 ? answer : answer + N}}</span>
+        <h3 ng-if="answer">Final Answer</h3>
+        <div ng-if="answer">
+          <span ng-if="answer < 0">{{answer}} + {{N}} = </span
+          ><span>{{answer > 0 ? answer : answer + N}}</span>
+        </div>
       </div>
     </div>
+    <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="./js/app.js"></script>
   </body>
 </html>
