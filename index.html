@@ -47,10 +47,10 @@
     <div ng-controller="StepsController">
       <div class="input">
         <form name="inputForm">
-          <input type="number" ng-model="x" ng-pattern="^\d+$" required />
+          <input type="number" ng-model="x" ng-pattern="/^\d+$/" required />
           <sup>-1</sup>
           <p class="mod">mod</p>
-          <input type="number" ng-model="n" ng-pattern="^\d+$" required />
+          <input type="number" ng-model="n" ng-pattern="/^\d+$/" required />
           <button class="submit-button" ng-click="calculate(x,n)">
             Calculate
           </button>

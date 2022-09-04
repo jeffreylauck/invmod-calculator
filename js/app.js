@@ -32,11 +32,15 @@ calApp.controller("StepsController", [
 
       a = -$scope.steps[$scope.steps.length - 1].b;
       b = $scope.steps[$scope.steps.length - 2].a;
-      c = 1 + $scope.steps[$scope.steps.length - 2].b;
+      c =
+        1 +
+        -$scope.steps[$scope.steps.length - 1].b *
+          -$scope.steps[$scope.steps.length - 2].b;
       d = $scope.steps[$scope.steps.length - 1].a;
       $scope.steps2.push({ a, b, c, d });
       // console.log(a, b, c, d);
       for (i = $scope.steps.length - 2; i >= 1; i--) {
+        // console.log(a, b, c, d);
         let tmp_a = c;
         d = b;
         b = $scope.steps[i - 1].a;
