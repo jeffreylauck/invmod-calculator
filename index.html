@@ -68,7 +68,7 @@
         <h2 ng-if="steps[steps.length-1].d !== 1">
           x and n are not co-prime, there is no multiplicative modulo inverse.
         </h2>
-        <div ng-repeat="step in steps">
+        <div ng-repeat="step in steps" ng-if="steps[steps.length-1].d === 1">
           <span>From ({{$index+1}})</span><br />
           <span class="a">{{step.d}}</span> =
           <span class="b">{{step.a}}</span> -
