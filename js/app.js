@@ -4,6 +4,9 @@ calApp.controller("StepsController", [
   "$scope",
   function ($scope) {
     $scope.calculate = (x, n) => {
+      if (!$scope.inputForm.$valid) {
+        return false;
+      }
       $scope.steps = [];
       $scope.steps2 = [];
       $scope.answer = undefined;

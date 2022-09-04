@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inverse Mod Calculator</title>
     <style>
-      .input {
+      .input > form {
         display: flex;
         flex-direction: row;
       }
@@ -46,13 +46,15 @@
     <h1>Inverse Mod Calculator</h1>
     <div ng-controller="StepsController">
       <div class="input">
-        <input type="number" ng-model="x" />
-        <sup>-1</sup>
-        <p class="mod">mod</p>
-        <input type="number" ng-model="n" />
-        <button class="submit-button" ng-click="calculate(x,n)">
-          Calculate
-        </button>
+        <form name="inputForm">
+          <input type="number" ng-model="x" ng-pattern="^\d+$" required />
+          <sup>-1</sup>
+          <p class="mod">mod</p>
+          <input type="number" ng-model="n" ng-pattern="^\d+$" required />
+          <button class="submit-button" ng-click="calculate(x,n)">
+            Calculate
+          </button>
+        </form>
       </div>
       <h3 ng-if="steps.length > 0">Steps</h3>
       <div ng-if="steps.length > 0" class="steps">
