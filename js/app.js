@@ -28,30 +28,34 @@ calApp.controller("StepsController", [
         d = a % c;
         $scope.steps.push({ a, b, c, d });
       }
-      // console.log($scope.steps);
-
-      a = -$scope.steps[$scope.steps.length - 1].b;
-      b = $scope.steps[$scope.steps.length - 2].a;
-      c =
-        1 +
-        -$scope.steps[$scope.steps.length - 1].b *
-          -$scope.steps[$scope.steps.length - 2].b;
-      d = $scope.steps[$scope.steps.length - 1].a;
-      $scope.steps2.push({ a, b, c, d });
-      // console.log(a, b, c, d);
-      for (i = $scope.steps.length - 2; i >= 1; i--) {
-        // console.log(a, b, c, d);
-        let tmp_a = c;
-        d = b;
-        b = $scope.steps[i - 1].a;
-        c = a + c * -$scope.steps[i - 1].b;
-        a = tmp_a;
+      console.log($scope.steps);
+      if ($scope.steps.length > 1) {
+        a = -$scope.steps[$scope.steps.length - 1].b;
+        b = $scope.steps[$scope.steps.length - 2].a;
+        c =
+          1 +
+          -$scope.steps[$scope.steps.length - 1].b *
+            -$scope.steps[$scope.steps.length - 2].b;
+        d = $scope.steps[$scope.steps.length - 1].a;
         $scope.steps2.push({ a, b, c, d });
-      }
-      const lastStep = $scope.steps2[$scope.steps2.length - 1];
-      console.assert(lastStep.a * lastStep.b + lastStep.c * lastStep.d === 1);
+        console.log(a, b, c, d);
+        for (i = $scope.steps.length - 2; i >= 1; i--) {
+          console.log(a, b, c, d);
+          let tmp_a = c;
+          d = b;
+          b = $scope.steps[i - 1].a;
+          c = a + c * -$scope.steps[i - 1].b;
+          a = tmp_a;
+          $scope.steps2.push({ a, b, c, d });
+        }
+        const lastStep = $scope.steps2[$scope.steps2.length - 1];
+        console.assert(lastStep.a * lastStep.b + lastStep.c * lastStep.d === 1);
 
-      $scope.answer = lastStep.c;
+        $scope.answer = lastStep.c;
+      } else {
+        const lastStep = $scope.steps[0];
+        $scope.answer = -lastStep.b;
+      }
 
       return true;
     };
